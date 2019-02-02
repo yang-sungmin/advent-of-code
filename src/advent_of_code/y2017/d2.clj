@@ -25,6 +25,7 @@
   [line]
   (- (last line) (first line)))
 
+;; p1
 (->> input
      (map parse)
      (map parse-int)
@@ -32,3 +33,27 @@
      (map diff)
      (flatten)
      (reduce + 0))
+
+(defn divisible?
+  [val coll]
+  (reduce
+    (fn [result candidate]
+      (if (= candidate val)
+        result
+        (if (not= 0 (rem candidate val))
+          result
+          (conj result (/ candidate val)))))
+    []
+    coll))
+
+(defn divisible-line
+  [line]
+  (map #(divisible? % line) line))
+
+;; p2
+(->> input
+     (map parse)
+     (map parse-int)
+     (map divisible-line)
+     (flatten)
+     (apply +))
