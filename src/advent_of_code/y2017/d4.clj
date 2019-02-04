@@ -19,3 +19,15 @@
      (map parse)
      (map diff-with-map)
      (filter true?)))
+
+(defn sorted-char
+  [line]
+  (map #(sort (seq %)) line))
+
+;; p2
+(count
+  (->> input
+     (map parse)
+     (map sorted-char)
+     (map diff-with-map)
+     (filter true?)))
