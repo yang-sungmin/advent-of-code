@@ -17,8 +17,7 @@
 (count
   (->> input
      (map parse)
-     (map diff-with-map)
-     (filter true?)))
+     (filter diff-with-map)))
 
 (defn sorted-char
   [line]
@@ -29,5 +28,4 @@
   (->> input
      (map parse)
      (map sorted-char)
-     (map diff-with-map)
-     (filter true?)))
+     (filter diff-with-map)))
