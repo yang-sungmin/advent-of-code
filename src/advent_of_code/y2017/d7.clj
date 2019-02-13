@@ -26,6 +26,22 @@
   [line]
   (apply ->tower (str/split line #" -> ")))
 
-( ->> input
-  (map parse)
-  (filter :holdings))
+(defn parent?
+  [name holdings]
+  (some #(= name %) holdings))
+
+(defn find-parent
+  [tower towers]
+  (first (filter #(parent? (:name tower) (:holdings %)) towers)))
+
+@(def towers (map parse input))
+
+(defn find-bottom
+  [tower towers]
+  (let [parent (find-parent tower towers)]
+    (if (empty? parent)
+      tower
+      (recur parent towers))))
+
+;; p1
+(find-bottom (first towers) towers)
