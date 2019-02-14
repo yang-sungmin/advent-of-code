@@ -1,6 +1,7 @@
 (ns advent_of_code.y2017.d7
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [clojure.set :as cset]))
 
 (def input
   (line-seq (io/reader (io/resource "y2017/d7.input"))))
@@ -45,3 +46,16 @@
 
 ;; p1
 (find-bottom (first towers) towers)
+
+;; p1 solved by Set Operation
+(defn roots
+  [coll]
+  (into #{} (map :name coll)))
+
+(defn leafs
+  [coll]
+  (into #{} (mapcat :holdings coll)))
+
+(cset/difference
+  (roots towers)
+  (leafs towers))
