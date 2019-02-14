@@ -16,8 +16,7 @@
 ; p1
 (reduce
   (fn [result item]
-    (let [score (:score result)
-          total (:total result)]
+    (let [{score :score total :total} result]
       (if (= item \{)
         {:score (inc score) :total (+ score total)}
         (if (= item \})
