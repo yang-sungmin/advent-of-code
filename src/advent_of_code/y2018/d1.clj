@@ -8,11 +8,14 @@
 (apply + (map read-string input))
 
 ; p2
-(reduce
-  (fn [result freq]
-    (let [curr (+ (last result) freq)]
-      (if (some #(= curr %) result)
-        (reduced curr)
-        (conj result curr))))
-  [0]
-  (cycle (map read-string input)))
+(time
+  (reduce
+    (fn [result freq]
+      (let [curr (+ (or (last result) 0) freq)]
+        (if (some #(= curr %) result)
+          (reduced curr)
+          (conj result curr))))
+    []
+    (cycle (map read-string input))))
+
+; "Elapsed time: 432965.000471 msecs"
