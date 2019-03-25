@@ -7,7 +7,6 @@
 (def input
   (line-seq (io/reader (io/resource "y2018/d2.input"))))
 
-<<<<<<< HEAD
 (defn n-times? [n]
   (fn [coll]
     (not (empty? (filter #(= n (second %)) coll)))))
