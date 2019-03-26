@@ -22,7 +22,7 @@
 
 ; p1
 (->> input
-     (map #(frequencies (seq %)))
+     (map frequencies)
      (map (juxt two-times? three-times?))
      (reduce inc-true-vec [0 0])
      (reduce *))
