@@ -18,10 +18,6 @@
     []
     (cycle (map read-string input))))
 
-; "Elapsed time: 432965.000471 msecs"
-
-; from namenu util.cljc
-; https://github.com/namenu/advent-of-code/blob/master/src/util.cljc
 (defn first-duplicate
   ([xs]
    (first-duplicate identity xs))
@@ -38,5 +34,3 @@
 
 (time
   (first-duplicate (reductions + (cycle (map read-string input)))))
-
-; "Elapsed time: 174.588303 msecs"
