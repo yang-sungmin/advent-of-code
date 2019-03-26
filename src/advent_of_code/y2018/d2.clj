@@ -3,8 +3,7 @@
 (ns advent_of_code.y2018.d2
   (:require [clojure.java.io :as io]))
 
-(def input
-  (line-seq (io/reader (io/resource "y2018/d2.input"))))
+(def input (->> "y2018/d2.input" io/resource io/reader line-seq))
 
 (defn n-times? [n]
   (fn [coll]
