@@ -8,7 +8,7 @@
 
 (defn n-times? [n]
   (fn [coll]
-    (not (empty? (filter #(= n (second %)) coll)))))
+    (not (empty? (keep #{n} coll)))))
 
 (def two-times? (n-times? 2))
 (def three-times? (n-times? 3))
@@ -22,7 +22,8 @@
 
 ; p1
 (->> input
-     (map #(frequencies (seq %)))
+     (map frequencies)
+     (map vals)
      (map (juxt two-times? three-times?))
      (reduce inc-true-vec [0 0])
      (reduce *))
